@@ -17,13 +17,24 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Banco {
-
+    private static Banco instancia;
     private List<Usuario> usuarios;
     private List<BilleteraVirtual> billeteras;
 
-    public Banco() {
+    private Banco() {
         this.usuarios = new ArrayList<>();
         this.billeteras = new ArrayList<>();
+    }
+
+    /**
+     * Es el singleton de banco
+     * @return
+     */
+    public static Banco getInstancia() {
+        if (instancia == null) {
+            instancia = new Banco();
+        }
+        return instancia;
     }
 
     /**
