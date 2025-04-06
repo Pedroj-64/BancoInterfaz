@@ -10,6 +10,7 @@ module co.edu.uniquindio.poo.bancointerfaz {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires static lombok;
 
     opens co.edu.uniquindio.poo.bancointerfaz to javafx.fxml;
     exports co.edu.uniquindio.poo.bancointerfaz;
