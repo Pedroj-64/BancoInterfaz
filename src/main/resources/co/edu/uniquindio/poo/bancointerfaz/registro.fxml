@@ -6,7 +6,7 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="co.edu.uniquindio.poo.bancointerfaz.Controller.RegistroController"
+      fx:controller="co.edu.uniquindio.poo.bancointerfaz.ViewController.RegistroViewController"
       prefHeight="400.0" prefWidth="400.0" alignment="center" spacing="30.0" >
 
     <Label text="Crear nueva cuenta" >
