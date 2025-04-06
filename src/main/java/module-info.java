@@ -11,6 +11,8 @@ module co.edu.uniquindio.poo.bancointerfaz {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires static lombok;
+    requires java.desktop;
+    requires com.fasterxml.jackson.core;
 
     opens co.edu.uniquindio.poo.bancointerfaz to javafx.fxml;
     exports co.edu.uniquindio.poo.bancointerfaz;

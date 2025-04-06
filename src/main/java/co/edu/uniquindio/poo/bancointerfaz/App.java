@@ -18,9 +18,8 @@ public class App extends Application {
     public void start(Stage stage) {
         try {
 
-
             // Cargar la escena de introducción desde el archivo FXML
-            scene = new Scene(loadFXML(""), 600, 340);
+            scene = new Scene(loadFXML("inicio.fxml"), 600, 340);
             stage.setScene(scene); // Establecer la escena en el escenario
             stage.show(); // Mostrar la escena
         } catch (IOException e) {
