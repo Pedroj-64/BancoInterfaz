@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="center" prefHeight="318.0" prefWidth="402.0" spacing="30.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.bancointerfaz.Controller.TransferenciaController">
+<VBox alignment="center" prefHeight="318.0" prefWidth="402.0" spacing="30.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.bancointerfaz.Controller.TransferenciaController">
 
     <Label text="Realizar Transferencia">
         <font>
@@ -42,6 +42,6 @@
 
     </GridPane>
 
-    <Button minHeight="40.0" minWidth="130.0" onAction="#Transferir" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Transferir" />
+    <Button fx:id="btn_Transferir" minHeight="40.0" minWidth="130.0" onAction="#Transferir" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Transferir" />
 
 </VBox>

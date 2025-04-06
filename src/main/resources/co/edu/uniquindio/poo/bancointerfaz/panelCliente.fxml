@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="487.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.bancointerfaz.Controller.PanelClienteController">
+<AnchorPane prefHeight="487.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.bancointerfaz.Controller.PanelClienteController">
 
     <Label layoutX="14.0" layoutY="24.0" text="Panel Principal de Administración">
         <font>
@@ -17,32 +17,37 @@
 
     <TableView fx:id="tablaTransacciones" layoutX="22.0" layoutY="90.0" prefHeight="310.0" prefWidth="674.0">
         <columns>
-            <TableColumn fx:id="colTipo" prefWidth="${tablaTransacciones.width*0.2}" text="Tipo" />
-            <TableColumn fx:id="colFecha" prefWidth="${tablaTransacciones.width*0.2}" text="Fecha" />
-            <TableColumn fx:id="colValor" prefWidth="${tablaTransacciones.width*0.2}" text="Valor" />
-            <TableColumn fx:id="colUsuario" prefWidth="${tablaTransacciones.width*0.2}" text="Usuario" />
-            <TableColumn fx:id="colCategoria" prefWidth="${tablaTransacciones.width*0.2}" text="Categoria" />
+            <TableColumn fx:id="colTipo" prefWidth="153.9999942779541" text="Tipo" />
+            <TableColumn fx:id="colFecha" prefWidth="134.66673278808594" text="Fecha" />
+            <TableColumn fx:id="colValor" prefWidth="122.666748046875" text="Valor" />
+            <TableColumn fx:id="colUsuario" prefWidth="140.00003051757812" text="Usuario" />
+            <TableColumn fx:id="colCategoria" prefWidth="104.6666259765625" text="Categoria" />
         </columns>
         <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
         </columnResizePolicy>
     </TableView>
 
-    <Button layoutX="578.0" layoutY="427.0" minHeight="40.0" minWidth="130.0" onAction="#CerrarSesion" style="-fx-background-color: #FF0000; -fx-text-fill: white" text="Cerrar Sesión" />
-   <Button layoutX="441.0" layoutY="427.0" minHeight="40.0" minWidth="130.0" onAction="#Consultar" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Consultar" />
-   <Button layoutX="303.0" layoutY="427.0" minHeight="40.0" minWidth="130.0" onAction="#Transferir" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Transferir" />
+    <Button fx:id="btn_CerrarSesion" layoutX="578.0" layoutY="427.0" minHeight="40.0" minWidth="130.0" onAction="#CerrarSesion" style="-fx-background-color: #FF0000; -fx-text-fill: white" text="Cerrar Sesión" />
+   <Button fx:id="btn_Consultar" layoutX="441.0" layoutY="427.0" minHeight="40.0" minWidth="130.0" onAction="#Consultar" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Consultar" />
+   <Button fx:id="btn_Transferir" layoutX="303.0" layoutY="427.0" minHeight="40.0" minWidth="130.0" onAction="#Transferir" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Transferir" />
    <Label layoutX="14.0" layoutY="60.0" text="Bienvenido, aqui podra ver sus transacciones.">
       <font>
          <Font size="13.0" />
       </font>
    </Label>
 
-    <Label fx:id="NumeroCuenta" layoutX="540.0" layoutY="60.0" text="Nro. Cuenta: 0000000000">
+    <Label fx:id="NumeroCuenta" layoutX="608.0" layoutY="60.0" text="0000000000">
         <font>
             <Font size="13.0" />
         </font>
     </Label>
 
-    <Button layoutX="22.0" layoutY="427.0" minHeight="40.0" minWidth="130.0" onAction="#ActualizarDatos" style="-fx-background-color: #008000; -fx-text-fill: white" text="Actualizar mis Datos" />
+    <Button fx:id="btn_ActulizarDatos" layoutX="22.0" layoutY="427.0" minHeight="40.0" minWidth="130.0" onAction="#ActualizarDatos" style="-fx-background-color: #008000; -fx-text-fill: white" text="Actualizar mis Datos" />
+   <Label layoutX="536.0" layoutY="60.0" text="Nro.Cuenta:">
+      <font>
+         <Font size="13.0" />
+      </font>
+   </Label>
 
 </AnchorPane>

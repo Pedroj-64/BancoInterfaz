@@ -5,12 +5,14 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="center" prefHeight="400.0" prefWidth="400.0" spacing="30.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.bancointerfaz.ViewController.LoginViewController">
+<VBox alignment="center" prefHeight="400.0" prefWidth="400.0" spacing="30.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.bancointerfaz.Controller.LoginController">
 
     <Label text="Iniciar Sesión">
         <font>
@@ -36,8 +38,20 @@
          <RowConstraints />
          <RowConstraints />
       </rowConstraints>
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
 
-    <Button minHeight="40.0" minWidth="130.0" onAction="#iniciarSesion" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Iniciar Sesión" />
+    <Button fx:id="btn_InicioSesion" minHeight="40.0" minWidth="130.0" onAction="#iniciarSesion" style="-fx-background-color: #00807a; -fx-text-fill: white" text="Iniciar Sesión" />
 
 </VBox>
