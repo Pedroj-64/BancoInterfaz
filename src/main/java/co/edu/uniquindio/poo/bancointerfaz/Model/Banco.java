@@ -20,6 +20,7 @@ public class Banco {
     private static Banco instancia;
     private List<Usuario> usuarios;
     private List<BilleteraVirtual> billeteras;
+    private Usuario usuarioActual;
 
     private Banco() {
         this.usuarios = new ArrayList<>();

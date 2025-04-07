@@ -17,4 +17,5 @@ public class Usuario {
 
     private String id, nombre, direccion, email, password;
 
+
 }

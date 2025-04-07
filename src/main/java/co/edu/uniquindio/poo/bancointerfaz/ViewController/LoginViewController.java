@@ -27,7 +27,7 @@ public class LoginViewController {
         String password = txtPassword.getText();
 
         try {
-            if (loginController.verificacion(id, password)) {
+            if (LoginController.verificacion(id, password)) {
                 App.loadScene("panelCliente", 800, 600); // Cambia por tu vista real
             } else {
                 App.showAlert("Error", "Credenciales inválidas", Alert.AlertType.ERROR);

@@ -1,6 +1,86 @@
 package co.edu.uniquindio.poo.bancointerfaz.Controller;
 
+import co.edu.uniquindio.poo.bancointerfaz.Model.Banco;
+import co.edu.uniquindio.poo.bancointerfaz.Model.Categoria;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import lombok.Setter;
+import javafx.scene.control.TextField;
+
+
 public class TransferenciaController {
+
+    @FXML
+    private TextField txtNumeroCuenta;
+
+    @FXML
+    private TextField txtMontoTransferir;
+
+    @FXML
+    private ComboBox<Categoria> comboCategoria;
+
+    /**
+     * -- SETTER --
+     *  Método que permite pasar la billetera de origen desde la vista anterior.
+     */
+    @Setter
+    private String numeroBilleteraOrigen;
+
+    /**
+     * Método que se ejecuta al iniciar la vista.
+     * Llena el ComboBox con las categorías.
+     */
+    @FXML
+    public void initialize() {
+        comboCategoria.getItems().setAll(Categoria.values());
+    }
+
+    /**
+     * Este método lo llama el botón de transferencia.
+     */
+    @FXML
+    private void Transferir() {
+        try {
+            String numeroDestino = txtNumeroCuenta.getText();
+            String montoTexto = txtMontoTransferir.getText();
+            Categoria categoria = comboCategoria.getValue();
+
+            if (numeroDestino.isEmpty() || montoTexto.isEmpty() || categoria == null) {
+                throw new Exception("Por favor, completa todos los campos.");
+            }
+
+            float monto = Float.parseFloat(montoTexto);
+
+            if (numeroBilleteraOrigen == null || numeroBilleteraOrigen.isEmpty()) {
+                throw new Exception("No se ha definido la billetera de origen.");
+            }
+
+            Banco.getInstancia().realizarTransferencia(numeroBilleteraOrigen, numeroDestino, monto, categoria);
+
+            mostrarAlerta("Éxito", "La transferencia fue realizada exitosamente", Alert.AlertType.INFORMATION);
+            limpiarCampos();
+        } catch (NumberFormatException e) {
+            mostrarAlerta("Error", "El monto debe ser un número válido", Alert.AlertType.ERROR);
+        } catch (Exception e) {
+            mostrarAlerta("Error", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
+    }
+
+    private void limpiarCampos() {
+        txtNumeroCuenta.clear();
+        txtMontoTransferir.clear();
+        comboCategoria.getSelectionModel().clearSelection();
+    }
+
 
 
 }

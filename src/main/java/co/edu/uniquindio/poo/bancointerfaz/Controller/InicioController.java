@@ -16,14 +16,16 @@ public class InicioController {
     //Es el que hace el cambio de vista
     public void cambiarVista(String fxml, ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/" + fxml));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/bancointerfaz/" + fxml));
             Parent root = loader.load();
 
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
+            System.out.println("Error cargando FXML: " + fxml);
             e.printStackTrace();
+
         }
     }
 }

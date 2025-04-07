@@ -2,6 +2,7 @@ package co.edu.uniquindio.poo.bancointerfaz.Model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BilleteraVirtual {
     private String numero;
@@ -97,4 +98,6 @@ public class BilleteraVirtual {
         return usuario;
     }
 
+    public List<Transaccion> getTransacciones() {
+    }
 }

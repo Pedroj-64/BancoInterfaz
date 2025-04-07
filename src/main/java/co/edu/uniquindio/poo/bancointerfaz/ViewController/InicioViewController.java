@@ -25,11 +25,13 @@ public class InicioViewController {
 
     @FXML
     void irIniciarSesion(ActionEvent event) {
+
         inicioController.cambiarVista("login.fxml", event);
     }
 
     @FXML
     void irRegistroCliente(ActionEvent event) {
+
         inicioController.cambiarVista("registro.fxml", event);
     }
 
