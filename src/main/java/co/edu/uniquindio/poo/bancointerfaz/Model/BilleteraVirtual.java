@@ -2,8 +2,13 @@ package co.edu.uniquindio.poo.bancointerfaz.Model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+@Data
+@Getter
+@Setter
 public class BilleteraVirtual {
     private String numero;
     private float saldo;
@@ -98,6 +103,5 @@ public class BilleteraVirtual {
         return usuario;
     }
 
-    public List<Transaccion> getTransacciones() {
-    }
+
 }

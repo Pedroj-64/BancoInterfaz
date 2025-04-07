@@ -1,27 +1,80 @@
 package co.edu.uniquindio.poo.bancointerfaz.ViewController;
 
-import co.edu.uniquindio.poo.bancointerfaz.Controller.TransferenciaController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import co.edu.uniquindio.poo.bancointerfaz.App;
+import co.edu.uniquindio.poo.bancointerfaz.Model.Banco;
+import co.edu.uniquindio.poo.bancointerfaz.Model.Categoria;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import lombok.Setter;
 
 public class TransferenciaViewController {
 
-    public void mostrarVistaTransferencia(String numeroBilleteraOrigen) {
+    @FXML
+    private TextField txtNumeroCuenta;
+
+    @FXML
+    private TextField txtMontoTransferir;
+
+    @FXML
+    private ComboBox<Categoria> comboCategoria;
+
+    /**
+     * -- SETTER --
+     *  Método que permite pasar la billetera de origen desde la vista anterior.
+     */
+    @Setter
+    private String numeroBilleteraOrigen;
+
+    /**
+     * Método que se ejecuta al iniciar la vista.
+     * Llena el ComboBox con las categorías.
+     */
+    @FXML
+    public void initialize() {
+        comboCategoria.getItems().setAll(Categoria.values());
+    }
+
+    /**
+     * Este método lo llama el botón de transferencia.
+     */
+    @FXML
+    private void Transferir() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uniquindio/poo/bancointerfaz/Transferencia.fxml"));
-            Parent root = loader.load();
+            String numeroDestino = txtNumeroCuenta.getText();
+            String montoTexto = txtMontoTransferir.getText();
+            Categoria categoria = comboCategoria.getValue();
 
-            TransferenciaController controller = loader.getController();
-            controller.setNumeroBilleteraOrigen(numeroBilleteraOrigen);
+            if (numeroDestino.isEmpty() || montoTexto.isEmpty() || categoria == null) {
+                throw new Exception("Por favor, completa todos los campos.");
+            }
 
-            Stage stage = new Stage();
-            stage.setTitle("Transferencia");
-            stage.setScene(new Scene(root));
-            stage.show();
+            float monto = Float.parseFloat(montoTexto);
+
+            if (numeroBilleteraOrigen == null || numeroBilleteraOrigen.isEmpty()) {
+                throw new Exception("No se ha definido la billetera de origen.");
+            }
+
+            Banco.getInstancia().realizarTransferencia(numeroBilleteraOrigen, numeroDestino, monto, categoria);
+
+            App.showAlert("Éxito", "La transferencia fue realizada exitosamente", Alert.AlertType.INFORMATION);
+            limpiarCampos();
+        } catch (NumberFormatException e) {
+            App.showAlert("Error", "El monto debe ser un número válido", Alert.AlertType.ERROR);
         } catch (Exception e) {
-            e.printStackTrace();
+            App.showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
+            
         }
     }
+
+
+
+    private void limpiarCampos() {
+        txtNumeroCuenta.clear();
+        txtMontoTransferir.clear();
+        comboCategoria.getSelectionModel().clearSelection();
+    }
+
+
 }

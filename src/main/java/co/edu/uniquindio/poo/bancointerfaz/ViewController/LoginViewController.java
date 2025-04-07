@@ -7,10 +7,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-
 public class LoginViewController {
 
     private final LoginController loginController = new LoginController();

@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import co.edu.uniquindio.poo.bancointerfaz.Model.Banco;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 
@@ -19,7 +20,7 @@ public class App extends Application {
         try {
 
             // Cargar la escena de introducción desde el archivo FXML
-            scene = new Scene(loadFXML("/co/edu/uniquindio/poo/bancointerfaz/inicio"), 600, 340);
+            scene = new Scene(loadFXML("inicio"), 600, 340);
             stage.setScene(scene); // Establecer la escena en el escenario
             stage.show(); // Mostrar la escena
         } catch (IOException e) {
@@ -60,6 +61,10 @@ public class App extends Application {
         alert.setContentText(message);
         alert.setOnHidden(evt -> loadScene(fxml, width, height));
         alert.show();
+    }
+
+    public static Banco getBanco() {
+        return Banco.getInstancia();
     }
 
     public static void main(String[] args) {

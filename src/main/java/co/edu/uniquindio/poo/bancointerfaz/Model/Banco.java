@@ -83,6 +83,31 @@ public class Banco {
         registrarBilletera(usuario);
     }
 
+    public void actualizarUsuario(String id, String nombre, String password, String correo, String direccion)
+            throws Exception {
+        Usuario usuario = buscarUsuario(id);
+
+        if (usuario == null) {
+            throw new Exception("El usuario no existe");
+        }
+
+        if (nombre != null && !nombre.isEmpty()) {
+            usuario.setNombre(nombre);
+        }
+
+        if (password != null && !password.isEmpty()) {
+            usuario.setPassword(password);
+        }
+
+        if (correo != null && !correo.isEmpty()) {
+            usuario.setEmail(correo);
+        }
+
+        if (direccion != null && !direccion.isEmpty()) {
+            usuario.setDireccion(direccion);
+        }
+    }
+
     /**
      * Permite registrar una billetera para un usuario
      * 
