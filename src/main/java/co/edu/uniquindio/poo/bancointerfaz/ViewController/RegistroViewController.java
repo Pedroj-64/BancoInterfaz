@@ -2,6 +2,7 @@ package co.edu.uniquindio.poo.bancointerfaz.ViewController;
 
 import co.edu.uniquindio.poo.bancointerfaz.App;
 import co.edu.uniquindio.poo.bancointerfaz.Controller.RegistroController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;

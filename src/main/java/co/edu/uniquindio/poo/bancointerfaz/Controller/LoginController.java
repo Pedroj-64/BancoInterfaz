@@ -19,17 +19,14 @@ public class LoginController {
     @FXML
     private PasswordField txtPassword;
 
-    public static boolean verificacion(String id, String password) throws Exception {
-        Usuario usuario = Banco.getInstancia().buscarUsuario(id);
+    public static Usuario verificacion(String id, String password) throws Exception {
+        Banco banco = Banco.getInstancia();
+        Usuario usuario = banco.buscarUsuario(id);
 
-        if (usuario == null) {
-            throw new Exception("El usuario no existe");
+        if (usuario != null && usuario.getPassword().equals(password)) {
+            return usuario;
         }
 
-        if (!usuario.getPassword().equals(password)) {
-            throw new Exception("Contraseña incorrecta");
-        }
-
-        return true;
+        return null;
     }
 }

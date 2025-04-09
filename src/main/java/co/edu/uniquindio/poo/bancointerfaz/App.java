@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 import co.edu.uniquindio.poo.bancointerfaz.Model.Banco;
@@ -13,14 +14,13 @@ import javafx.scene.control.Alert;
 
 public class App extends Application {
 
-    private static Scene scene;
+    private static Stage primaryStage;
 
     @Override
     public void start(Stage stage) {
+        primaryStage = stage;
         try {
-
-            // Cargar la escena de introducción desde el archivo FXML
-            scene = new Scene(loadFXML("inicio"), 600, 340);
+            Scene scene = new Scene(loadFXML("inicio"), 600, 340);
             stage.setScene(scene); // Establecer la escena en el escenario
             stage.show(); // Mostrar la escena
         } catch (IOException e) {
@@ -33,16 +33,21 @@ public class App extends Application {
     public static void loadScene(String fxml, double width, double height) {
         try {
             Parent root = loadFXML(fxml);
-            scene.setRoot(root);
-            scene.getWindow().setWidth(width);
-            scene.getWindow().setHeight(height);
+            Scene newScene = new Scene(root, width, height);
+            primaryStage.setScene(newScene);
+            primaryStage.show();
         } catch (IOException e) {
-            showAlert("Error al cambiar la vista", "No se pudo cargar el archivo FXML: " + e.getMessage(), Alert.AlertType.ERROR);
+            showAlert("Error", "No se pudo cargar la vista: " + e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
         }
     }
 
+    public static void loadScene(String fxml, double width, double height, ActionEvent event) {
+        loadScene(fxml, width, height);
+    }
+
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/co/edu/uniquindio/poo/bancointerfaz/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

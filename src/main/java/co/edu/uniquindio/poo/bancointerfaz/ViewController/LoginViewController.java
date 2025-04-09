@@ -2,6 +2,8 @@ package co.edu.uniquindio.poo.bancointerfaz.ViewController;
 
 import co.edu.uniquindio.poo.bancointerfaz.App;
 import co.edu.uniquindio.poo.bancointerfaz.Controller.LoginController;
+import co.edu.uniquindio.poo.bancointerfaz.Model.Usuario;
+import co.edu.uniquindio.poo.bancointerfaz.Model.UsuarioActivo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -23,8 +25,10 @@ public class LoginViewController {
         String password = txtPassword.getText();
 
         try {
-            if (LoginController.verificacion(id, password)) {
-                App.loadScene("panelCliente", 800, 600); // Cambia por tu vista real
+            Usuario usuario = LoginController.verificacion(id, password);
+            if (usuario != null) {
+                UsuarioActivo.setUsuarioActual(usuario); // <- AQUÍ GUARDAS EL USUARIO
+                App.loadScene("panelCliente", 800, 600);
             } else {
                 App.showAlert("Error", "Credenciales inválidas", Alert.AlertType.ERROR);
             }

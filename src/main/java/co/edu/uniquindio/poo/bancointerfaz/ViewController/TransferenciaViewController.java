@@ -69,7 +69,6 @@ public class TransferenciaViewController {
     }
 
 
-
     private void limpiarCampos() {
         txtNumeroCuenta.clear();
         txtMontoTransferir.clear();
