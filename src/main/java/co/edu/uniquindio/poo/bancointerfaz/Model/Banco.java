@@ -245,6 +245,7 @@ public class Banco implements Serializable {
             throw new Exception("Saldo insuficiente");
         }
 
+
         Transaccion transaccion = new Transaccion(
                 UUID.randomUUID().toString(),
                 monto,

@@ -33,7 +33,18 @@ public class TransferenciaViewController {
      */
     @FXML
     public void initialize() {
+
         comboCategoria.getItems().setAll(Categoria.values());
+        comboCategoria.setOnAction(event -> {
+            Categoria seleccionada = comboCategoria.getValue();
+            if (seleccionada == Categoria.RECARGA && numeroBilleteraOrigen != null) {
+                txtNumeroCuenta.setText(numeroBilleteraOrigen);
+                txtNumeroCuenta.setDisable(true);
+            } else {
+                txtNumeroCuenta.clear();
+                txtNumeroCuenta.setDisable(false);
+            }
+        });
     }
 
     /**
@@ -56,7 +67,15 @@ public class TransferenciaViewController {
                 throw new Exception("No se ha definido la billetera de origen.");
             }
 
-            Banco.getInstancia().realizarTransferencia(numeroBilleteraOrigen, numeroDestino, monto, categoria);
+            if (numeroDestino.equals(numeroBilleteraOrigen) && categoria != Categoria.RECARGA) {
+                throw new Exception("No puedes transferirte a ti mismo.");
+            }
+
+            if (categoria == Categoria.RECARGA) {
+                Banco.getInstancia().recargarBilletera(numeroDestino, monto);
+            } else {
+                Banco.getInstancia().realizarTransferencia(numeroBilleteraOrigen, numeroDestino, monto, categoria);
+            }
 
             App.showAlert("Éxito", "La transferencia fue realizada exitosamente", Alert.AlertType.INFORMATION);
             limpiarCampos();
@@ -64,7 +83,6 @@ public class TransferenciaViewController {
             App.showAlert("Error", "El monto debe ser un número válido", Alert.AlertType.ERROR);
         } catch (Exception e) {
             App.showAlert("Error", e.getMessage(), Alert.AlertType.ERROR);
-            
         }
     }
 

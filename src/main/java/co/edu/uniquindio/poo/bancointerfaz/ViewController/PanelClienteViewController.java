@@ -88,6 +88,16 @@ public class PanelClienteViewController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("transferencia.fxml"));
             Parent root = fxmlLoader.load();
+            TransferenciaViewController controller = fxmlLoader.getController();
+
+            var usuario = UsuarioActivo.getUsuario();
+            var billetera = App.getBanco().buscarBilleteraUsuario(usuario.getId());
+
+            if (billetera == null) {
+                throw new Exception("No se encontró la billetera del usuario.");
+            }
+
+            controller.setNumeroBilleteraOrigen(billetera.getNumero());
 
             Stage stage = new Stage();
             stage.setTitle("Transferencia");
@@ -100,6 +110,8 @@ public class PanelClienteViewController {
         } catch (IOException e) {
             App.showAlert("Error", "No se pudo abrir la ventana de transferencia:\n" + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
