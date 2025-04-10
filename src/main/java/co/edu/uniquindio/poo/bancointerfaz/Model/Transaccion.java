@@ -24,4 +24,5 @@ public class Transaccion {
     private BilleteraVirtual billeteraOrigen, billeteraDestino;
     private float comision;
 
+
 }

@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 
 
@@ -55,7 +56,10 @@ public class PanelClienteViewController {
     }
 
     private void cargarTransacciones() {
-        tablaTransacciones.getItems().setAll(controller.obtenerTransaccionesUsuarioActual());
+        var transacciones = controller.obtenerTransaccionesUsuarioActual();
+        System.out.println("Transacciones cargadas: " + transacciones.size());
+        transacciones.forEach(System.out::println);
+        tablaTransacciones.getItems().setAll(transacciones);
     }
 
     private void mostrarNumeroCuenta() {
@@ -98,6 +102,7 @@ public class PanelClienteViewController {
             }
 
             controller.setNumeroBilleteraOrigen(billetera.getNumero());
+            controller.setOnTransferenciaExit(() -> refrescarTransacciones());
 
             Stage stage = new Stage();
             stage.setTitle("Transferencia");
@@ -105,8 +110,8 @@ public class PanelClienteViewController {
             stage.setResizable(false);
 
             stage.initModality(Modality.APPLICATION_MODAL);
-
             stage.showAndWait();
+
         } catch (IOException e) {
             App.showAlert("Error", "No se pudo abrir la ventana de transferencia:\n" + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
@@ -126,13 +131,17 @@ public class PanelClienteViewController {
             stage.setResizable(false);
 
             stage.initModality(Modality.APPLICATION_MODAL);
-
             stage.showAndWait();
+
         } catch (IOException e) {
             App.showAlert("Error", "No se pudo abrir la ventana de Actualizar Datos:\n" + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
         }
 
+    }
+
+    public void refrescarTransacciones() {
+        cargarTransacciones();
     }
 }
 

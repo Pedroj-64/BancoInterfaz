@@ -79,6 +79,9 @@ public class TransferenciaViewController {
 
             App.showAlert("Éxito", "La transferencia fue realizada exitosamente", Alert.AlertType.INFORMATION);
             limpiarCampos();
+            if (onTransferenciaExit != null) {
+                onTransferenciaExit.run();
+            }
         } catch (NumberFormatException e) {
             App.showAlert("Error", "El monto debe ser un número válido", Alert.AlertType.ERROR);
         } catch (Exception e) {
@@ -92,6 +95,9 @@ public class TransferenciaViewController {
         txtMontoTransferir.clear();
         comboCategoria.getSelectionModel().clearSelection();
     }
+
+    @Setter
+    private Runnable onTransferenciaExit;
 
 
 }
