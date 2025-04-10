@@ -6,15 +6,38 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
 
 import co.edu.uniquindio.poo.bancointerfaz.Model.Banco;
+import co.edu.uniquindio.poo.bancointerfaz.Serializador.Serializador;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class App extends Application {
 
     private static Stage primaryStage;
+    private static Banco banco; 
+    private static final String ARCHIVO_SERIALIZACION = "Banco.ser";
+
+
+    @Override
+    public void init() {
+        try {
+            File archivo = new File(ARCHIVO_SERIALIZACION);
+            if (archivo.exists()) {
+                banco = Serializador.cargarEstado(ARCHIVO_SERIALIZACION);
+                System.out.println("Estado del objeto cargado exitosamente.");
+            } else {
+                banco = Banco.getInstancia(); // Crear nueva instancia si no existe el archivo
+                System.out.println("No se encontró el archivo de estado, se creó una nueva instancia del objeto.");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            banco = Banco.getInstancia(); // Crear nueva instancia en caso de error
+            System.out.println("No se pudo cargar el estado del objeto, se creó una nueva instancia.");
+        }
+    }
 
     @Override
     public void start(Stage stage) {
@@ -27,6 +50,20 @@ public class App extends Application {
             showAlert("Error al cargar la interfaz", "No se pudo cargar el archivo FXML: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+
+    @Override
+    public void stop() {
+        // Guardar el estado del concesionario antes de cerrar la aplicación
+        try {
+            Serializador.guardarEstado(banco, ARCHIVO_SERIALIZACION);
+            System.out.println("Estado del objeto guardado exitosamente.");
+        } catch (IOException e) {
+            showAlert("Error al guardar el estado", "No se pudo guardar el estado del objeto: " + e.getMessage(), AlertType.ERROR);
+        }
+    }
+
+
+
 
 
 

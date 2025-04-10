@@ -7,16 +7,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.io.*;
 
-/**
- * Clase que representa un banco con usuarios y billeteras
- * 
- * @version 1.0
- * @author caflorezvi
- */
 @Getter
 @Setter
-public class Banco {
+public class Banco implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static Banco instancia;
     private List<Usuario> usuarios;
     private List<BilleteraVirtual> billeteras;
