@@ -70,11 +70,21 @@ public class PanelClienteViewController {
 
     @FXML
     private void Consultar() {
-        cargarTransacciones();
+        try {
+            var usuario = UsuarioActivo.getUsuario();
+            var billetera = App.getBanco().buscarBilleteraUsuario(usuario.getId());
+
+            double saldo = billetera.getSaldo();
+
+            App.showAlert("Saldo Actual", "Tu saldo disponible es: $" + saldo, Alert.AlertType.INFORMATION);
+        } catch (Exception e) {
+            App.showAlert("Error", "No se pudo consultar el saldo:\n" + e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
     }
 
-    @FXML
-    private void Transferir(ActionEvent event) {
+
+    public void Transferir (ActionEvent event){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("transferencia.fxml"));
             Parent root = fxmlLoader.load();
@@ -93,9 +103,7 @@ public class PanelClienteViewController {
         }
     }
 
-
-    @FXML
-    private void ActualizarDatos() {
+    public void ActualizarDatos (ActionEvent event){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("actualizarDatos.fxml"));
             Parent root = fxmlLoader.load();
@@ -114,7 +122,8 @@ public class PanelClienteViewController {
         }
 
     }
-
 }
+
+
 
 
