@@ -12,4 +12,7 @@ public class UsuarioActivo {
         usuarioActual = null;
     }
 
+    public static Usuario getUsuario() {
+        return usuarioActual;
+    }
 }

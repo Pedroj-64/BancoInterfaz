@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import co.edu.uniquindio.poo.bancointerfaz.Model.UsuarioActivo;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -58,6 +60,13 @@ public class ActualizarDatosViewController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+        var usuario = UsuarioActivo.getUsuario();
+
+        txtIdentificacion.setText(usuario.getId());
+        txtNombre.setText(usuario.getNombre());
+        txtPassword.setText(usuario.getPassword());
+        txtCorreo.setText(usuario.getEmail());
+        txtDireccion.setText(usuario.getDireccion());
 
     }
 }

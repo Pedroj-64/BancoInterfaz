@@ -86,7 +86,7 @@ public class PanelClienteViewController {
 
             stage.initModality(Modality.APPLICATION_MODAL);
 
-            stage.showAndWait(); // Usa show() si no quieres que sea bloqueante
+            stage.showAndWait();
         } catch (IOException e) {
             App.showAlert("Error", "No se pudo abrir la ventana de transferencia:\n" + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
@@ -96,7 +96,22 @@ public class PanelClienteViewController {
 
     @FXML
     private void ActualizarDatos() {
-        App.loadScene("actualizarDatos.fxml", 400, 400);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("actualizarDatos.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Actualizar datos");
+            stage.setScene(new Scene(root, 400, 400));
+            stage.setResizable(false);
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.showAndWait();
+        } catch (IOException e) {
+            App.showAlert("Error", "No se pudo abrir la ventana de Actualizar Datos:\n" + e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
 
     }
 
