@@ -1,1 +1,3 @@
-Proyecto hecho por Brandon Steven Gil, Pedro Jose Soto Rivera y Santiago Padilla Rios
+Trabajo de un banco simple con interfaz grafica a base de JavaFX
+Licencia: GNU PL 3.0
+Autores: Pedro Jose Soto Rivera,Satiago Padilla Rios,Brandon Steven Gil
